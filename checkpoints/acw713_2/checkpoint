@@ -1,0 +1,4 @@
+model_checkpoint_path: "acw713-12"
+all_model_checkpoint_paths: "acw713-12"
+all_model_checkpoint_timestamps: 1711486613.0888906
+last_preserved_timestamp: 1711483703.7038624

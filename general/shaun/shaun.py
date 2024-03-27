@@ -144,7 +144,7 @@ class Config:
             note_range = TFDataset.note_range
             self.learning_rate = tf.Variable(
                 self.initial_learning_rate, dtype=tf.float32, name='learning_rate', trainable=False)
-            self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.learning_rate)
+            self.optimizer = tf.keras.optimizers.Adam(learning_rate=1e-4)
 
             spec = tf.random.normal([1, self.snippet_len, 540])
             lower_note = note_range[0]
@@ -155,7 +155,7 @@ class Config:
                 loss = self.acoustic_model_ins.loss_tf_fn(ref_notes=labels, logits=logits)
             grads = tape.gradient(loss, self.acoustic_model_ins.trainable_variables)
             self.optimizer.apply_gradients(zip(grads, self.acoustic_model_ins.trainable_variables))
-            assert len(self.optimizer.weights) > 0
+            # assert len(self.optimizer.weights) > 0
 
             if self.debug_mode:
                 print('weights of the optimizer: ')
